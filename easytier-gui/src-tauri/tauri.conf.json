@@ -17,7 +17,7 @@
     "createUpdaterArtifacts": false
   },
   "productName": "easytier-gui",
-  "version": "2.5.0-acl",
+  "version": "2.5.1",
   "identifier": "com.kkrainbow.easytier",
   "plugins": {
     "shell": {
