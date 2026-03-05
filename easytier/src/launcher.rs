@@ -777,6 +777,16 @@ impl NetworkConfig {
         }
 
         cfg.set_flags(flags);
+
+        // Parse and set ACL configuration if provided
+        if let Some(acl_json) = self.acl.clone() {
+            if !acl_json.is_empty() {
+                let acl: crate::proto::acl::Acl = serde_json::from_str(&acl_json)
+                    .with_context(|| format!("failed to parse ACL config: {}", acl_json))?;
+                cfg.set_acl(Some(acl));
+            }
+        }
+
         Ok(cfg)
     }
 
@@ -922,6 +932,11 @@ impl NetworkConfig {
                     .map(|s| s.to_string())
                     .collect();
             }
+        }
+
+        // Convert ACL configuration to JSON string
+        if let Some(acl) = config.get_acl() {
+            result.acl = Some(serde_json::to_string(&acl).unwrap_or_default());
         }
 
         Ok(result)

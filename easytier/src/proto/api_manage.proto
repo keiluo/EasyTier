@@ -81,6 +81,9 @@ message NetworkConfig {
   optional common.CompressionAlgoPb data_compress_algo = 52;
   optional string encryption_algorithm = 53;
   optional bool disable_tcp_hole_punching = 54;
+
+  // ACL configuration as JSON string
+  optional string acl = 55;
 }
 
 message PortForwardConfig {

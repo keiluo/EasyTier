@@ -72,6 +72,8 @@ export interface NetworkConfig {
   enable_private_mode?: boolean
 
   port_forwards: PortForwardConfig[]
+
+  acl?: string
 }
 
 export function DEFAULT_NETWORK_CONFIG(): NetworkConfig {
