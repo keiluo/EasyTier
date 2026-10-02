@@ -15,6 +15,7 @@ import {
 import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AclManager from './acl/AclManager.vue'
+import HostsEditor from './HostsEditor.vue'
 import UrlListInput from './UrlListInput.vue'
 
 const props = defineProps<{
@@ -623,6 +624,10 @@ function removeVpnPortalClient(index: number) {
               <Button :label="t('acl.enabled')"
                 @click="curNetwork.acl = { acl_v1: { chains: [], group: { declares: [], members: [] } } }" />
             </div>
+          </Panel>
+
+          <Panel :header="t('hosts.title')" toggleable collapsed>
+            <HostsEditor v-model:hosts="curNetwork.hosts" />
           </Panel>
 
           <div class="flex pt-6 justify-center">
